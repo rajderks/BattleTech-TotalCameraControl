@@ -44,9 +44,9 @@ namespace TotalCameraControl
                     if (declaringType == ShowActor && settings.showActor) return true;
                     if (declaringType == Strafe && settings.strafe) return true;
                     if (declaringType == ActorDestroyed && settings.deathCam) return true;
-                    Logger.Log(new StackTrace().ToString(), true);
+                    if (TotalCameraControl.GlobalSettings.debug) Logger.Log(new StackTrace().ToString(), true);
                 }
-                catch (System.Exception e)
+                catch (Exception e)
                 {
                     Logger.Log(mbase.ToString(), false);
                     Logger.Error(e);

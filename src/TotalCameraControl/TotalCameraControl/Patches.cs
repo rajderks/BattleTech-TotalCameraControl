@@ -19,7 +19,7 @@ namespace TotalCameraControl
         {
             if (!SequenceHelper.SkipSequenceByTrace(new StackTrace()))
             {
-                Logger.Log("setState: Skipping!", false);
+                if(TotalCameraControl.GlobalSettings.debug) Logger.Log("setState: Skipping!", false);
                 return true;
             }
             else if (newState == CameraControl.CameraState.NotSet
@@ -50,7 +50,7 @@ namespace TotalCameraControl
     /// </summary>
     [HarmonyPatch(typeof(CameraControl))]
     [HarmonyPatch("ShowRandomizedFocalCam")]
-    [HarmonyPatch(new System.Type[] { typeof(Vector3), typeof(Quaternion), typeof(float), typeof(float), typeof(float) })]
+    [HarmonyPatch(new Type[] { typeof(Vector3), typeof(Quaternion), typeof(float), typeof(float), typeof(float) })]
     class CameraControl_ShowRandomizedFocalCam_Patch
     {
         public static bool Prefix()
@@ -75,4 +75,3 @@ namespace TotalCameraControl
     }
 
 }
-

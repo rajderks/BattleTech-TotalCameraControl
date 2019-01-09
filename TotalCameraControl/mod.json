@@ -1,7 +1,7 @@
 {
     "Name": "TotalCameraControl",
     "Enabled": true,
-    "Version": "1.0",
+    "Version": "1.1",
     "Description": "Prevents loss of camera control",
     "Author": "Roy Derks",
     "Website": "https://www.github.com/rajderks/battletech-TotalCameraControl",
