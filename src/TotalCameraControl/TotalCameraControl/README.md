@@ -1,6 +1,5 @@
 # BT: TotalCameraControl
-This is a mod for *BattleTech* that prevents the camera control from being taken away.    
-Greatly speeds up turns as theres no more waiting for certain cinematics to play out, including there padding.   
+This is a mod for *BattleTech* that prevents the camera control from being taken away.     
 Some notable removed cinematics:
 - Sensor-lock skill fly-over
 - Stand up

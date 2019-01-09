@@ -1,5 +1,5 @@
-# BT: AlwaysRegenerateContracts
-This is a mod for *BattleTech* that prevents the camera control from being taken away.      
+# BT: TotalCameraControl
+This is a mod for *BattleTech* that prevents the camera control from being taken away.     
 Some notable removed cinematics:
 - Sensor-lock skill fly-over
 - Stand up
