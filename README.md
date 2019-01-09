@@ -6,7 +6,7 @@ Some notable removed cinematics:
 - Stand up
 - Start up
 - Melee
-- Probably more...
+- And more...
 
 ## Prerequisites
 
@@ -18,8 +18,26 @@ Install guide: https://github.com/janxious/ModTek/wiki/The-Drop-Dead-Simple-Guid
 ## Installation
 Place the contents of the zip file in your `\Steamlibrary\steamapps\common\BATTLETECH\Mods\` folder.
 
+## Settings
+In the `mod.json` file you may edit the available settings below.
+Setting a field to true means the cinematic should be skipped. 
+
+
+| Name  | Default | Description |
+| ----- | --- | -------------|
+| jump  | true  | Jump-jet action cam |
+| DFA  | true  | Death From Above action cam |
+| melee  | true  | Melee action cam|
+| artilleryObjective  | true  | This is probably a focus on the target of offscreen LRM attack.. not sure. |
+| artillery  | true  | This is probably a focus on the offscreen attacker using LRM's.. not sure. |
+| startup  | true  | Close-up when your mech was disabled due to overheating and you or the AI presses the startup button. |
+| stand  | true  | Close-up when your mech was on it's back and you or the AI presses the 'stand up' button. |
+| sensorLock  | true  | Fly-over focussed on the target when usign the Sensor-lock skill. Both you and the AI |
+| deathCam  | true  | Close-up on the explosive ending to a mech. |
+| showActor  | true  | Pan and focus to new enemy forces. |
+| strafe  | true  | No idea, best to leave it on true. |
+| debug  | false  | Turn this on if you encounter an issue and you want help. The `log` will be written in the same folder. |
+
+
 ## Disclaimer 
 Use at your own risk.
-
-## Todo
-- Respect user settings in options menu regarding cinematics
