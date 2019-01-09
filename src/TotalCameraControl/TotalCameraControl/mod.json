@@ -7,5 +7,7 @@
     "Website": "https://www.github.com/rajderks/battletech-TotalCameraControl",
     "Contact": "https://www.github.com/rajderks/battletech-TotalCameraControl",
 	"DLL": "TotalCameraControl.dll",
-	"Settings":{}
+	"Settings":{
+		"debug": true,
+	}
 }

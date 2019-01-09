@@ -1,9 +1,13 @@
 ﻿using BattleTech;
 using Harmony;
 using UnityEngine;
+using System;
+using System.Diagnostics;
+using System.Reflection;
 
 namespace TotalCameraControl
 {
+
     /// <summary>
     /// Prevents general cinematics from showing.
     /// </summary>
@@ -11,20 +15,38 @@ namespace TotalCameraControl
     [HarmonyPatch("setState")]
     class CameraControl_setState_Patch
     {
-        public static bool Prefix(CameraControl __instance, CameraControl.CameraState newState) {
-
-            if(newState == CameraControl.CameraState.NotSet 
+        public static bool Prefix(CameraControl __instance, CameraControl.CameraState newState)
+        {
+            if (!SequenceHelper.SkipSequenceByTrace(new StackTrace()))
+            {
+                Logger.Log("setState: Skipping!", false);
+                return true;
+            }
+            else if (newState == CameraControl.CameraState.NotSet
                 || newState == CameraControl.CameraState.RestoringPlayer
                 || newState == CameraControl.CameraState.PlayerControlled)
             {
-                return true;
+                return false;
             }
-            return false;
+            return true;
         }
     }
 
     /// <summary>
-    /// Prevent randomized event's from triggering, i.e. melee.
+    /// Deathcam has a special entry point
+    /// </summary>
+    [HarmonyPatch(typeof(AttackStackSequence))]
+    [HarmonyPatch("OnActorDestroyed")]
+    class AttackStackSequence_OnActorDestroyed_Patch
+    {
+        public static bool Prefix()
+        {
+            return !SequenceHelper.SkipSequenceByTrace(new StackTrace());
+        }
+    }
+
+    /// <summary>
+    /// Prevent randomized event's from triggering.
     /// </summary>
     [HarmonyPatch(typeof(CameraControl))]
     [HarmonyPatch("ShowRandomizedFocalCam")]
@@ -33,20 +55,7 @@ namespace TotalCameraControl
     {
         public static bool Prefix()
         {
-            return false;
-        }
-    }
-
-    /// <summary>
-    /// Prevents enemy movement, standup and startup animations.
-    /// </summary>
-    [HarmonyPatch(typeof(ActorMovementSequence))]
-    [HarmonyPatch("ShowCamera")]
-    class ActorMovementSequence_ShowCamera_Patch
-    {
-        public static bool Prefix()
-        {
-            return false;
+            return !SequenceHelper.SkipSequenceByTrace(new StackTrace());
         }
     }
 
@@ -57,20 +66,13 @@ namespace TotalCameraControl
     [HarmonyPatch("SetCamera")]
     class MultiSequence_SetCamera_Patch
     {
-        public static bool Prefix(MultiSequence __instance, CameraSequence sequence)
+
+        public static bool Prefix(MultiSequence __instance, MethodBase __originalMethod, CameraSequence sequence, int messageIndex)
         {
-            try
-            {
-                if (sequence.FocalCombatant.IsDead)
-                {
-                    return true;
-                }
-                return false;
-            } catch(System.Exception e)
-            {
-                return true;
-            }
+            return !SequenceHelper.SkipSequenceByTrace(new StackTrace());
         }
+
     }
+
 }
 
